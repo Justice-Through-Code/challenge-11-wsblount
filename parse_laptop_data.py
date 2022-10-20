@@ -66,7 +66,7 @@ laptops = [
 
 
 # 1.1 TODO: Print out the MacBook Pro url
-
+print(laptops[0]['url'])
 
 # 1.2 TODO: Write a function called `print_laptop_data` that takes in two parameters: `laptop` and `topic`, and returns nothing.
 #
@@ -87,31 +87,47 @@ laptops = [
 #   So, for instance:
 #   Dell XPS ram: ["8GB", "16GB", "32GB", "64GB"]
 
+def print_laptop_data(laptop, topic):
+    for device in laptops:
+        if device['productName'] == laptop:
+            print(f'{laptop} {topic}: {device["types"][0][topic]}')
+
 
 # 1.3 TODO: Call your function 3 times to print out:
 #   1.3.1: All possible prices of the Apple Macbook Pro.
 #   1.3.2: All the color options for the Dell XPS.
 #   1.3.3: The screen_size of the Dell XPS.
-
+print_laptop_data('Apple Macbook Pro', 'price')
+print_laptop_data('Dell XPS', 'colors')
+print_laptop_data('Dell XPS', 'screen_size')
 
 # 2.1 TODO: Write a function called `list_prices` that takes one parameter: a list of computers, and returns nothing.
 #   Using nested loops, the function should print out all possible computer prices, one price on each line.
 #   No need to specify which computer each price belongs to.
 
+def list_prices(list_of_computers):
+    for computer in list_of_computers:
+        for computer_type in computer['types']:
+            for price in computer_type['price']:
+                print(price)
 
 # 2.2 TODO: Call your function to see that it works.
 
+# list_prices(laptops)
 
 # 3.0 Suppose that the two versions of the 16-inch MacBook Pro are no longer available:
 #   - In the color 'space gray'
 #   - With '1 TB SSD' storage
 
 # 3.1 TODO: Update the `laptops` dictionary to reflect these changes.
-
+laptops[0]['types'][1]['colors'].remove('space gray')
+laptops[0]['types'][1]['storage'].remove('1 TB SSD')
 
 # 3.2 TODO: Print out the Macbook Pro dictionary to see the changes.
 
+print(laptops[0]['types'][1])
 
 # BONUS TODO: Write a function called `get_price_range` that returns the minimum and maximum prices out of all the options.
 
-# ^ Expected outcome: (999, 2799)
+# Expected outcome: (999, 2799)
+
